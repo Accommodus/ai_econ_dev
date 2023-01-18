@@ -4,7 +4,6 @@ import numpy as np
 # creates and registers a zone class
 from ai_economist.foundation.entities.landmarks import Landmark, landmark_registry
 
-@landmark_registry.add
 class Zone(Landmark):
     name = 'Zone'
     ownable = True
@@ -25,6 +24,30 @@ class UrbanDesignSimulation(BaseEnvironment):
     ):
 
         print(base_env_kwargs['zones'])
+
+    def reset_layout(self):
+        """Resets the state of the world object (self.world)."""
+        pass
+
+    def reset_agent_states(self):
+        """Resets the state of the agent objects (self.world.agents & self.world.planner)."""
+        pass
+
+    def scenario_step(self):
+        """Implements the passive dynamics of the environment."""
+        pass
+
+    def generate_observations(self):
+        """Yields some basic observations about the world/agent states."""
+        pass
+
+    def compute_reward(self):
+        """Determines the reward each agent receives at the end of each timestep."""
+        pass
+
+    def reset_starting_layout(self):
+        """"""
+        pass
 
 env_config = {
     # ===== STANDARD ARGUMENTS ======
@@ -66,7 +89,7 @@ env_config = {
     # (optional) kwargs of the chosen scenario class
     'starting_agent_coin': 10,
 
-    # dict thats stores information on the different types of zone
+    # dict that stores information on the different types of zone
     'zones': {
 
         "low_density_residential":{
