@@ -5,8 +5,11 @@ import numpy as np
 from ai_economist.foundation.entities.landmarks import Landmark, landmark_registry
 
 class Zone(Landmark):
-    name = 'Zone'
     ownable = True
+
+    construction_cost = 0
+    max_residental_population = 0
+    max_commercial_population = 0
     
 # creates the Foundation scenario
 from ai_economist.foundation.base.base_env import BaseEnvironment, scenario_registry
@@ -23,7 +26,11 @@ class UrbanDesignSimulation(BaseEnvironment):
         **base_env_kwargs,
     ):
 
-        print(base_env_kwargs['zones'])
+        zone_dict = base_env_kwargs['zones']
+
+        for zone in zone_dict.keys():
+            landmark_registry.add(type(zone, (Zone,), {'name': zone}))
+
 
     def reset_layout(self):
         """Resets the state of the world object (self.world)."""
@@ -93,23 +100,22 @@ env_config = {
     'zones': {
 
         "low_density_residential":{
-            "cost":10,
-            "population":10
+            "construction_cost":10,
+            "max_residental_population":10
         },
 
         "med_density_residential":{
-            "cost":20,
-            "population":20
+            "construction_cost":20,
+            "max_residental_population":20
         },
 
         "high_density_residential":{
-            "cost":30,
-            "population":30
+            "construction_cost":30,
+            "max_residental_population":30
         },
 
         "recreational":{
-            "cost":10,
-            "population":0
+            "construction_cost":10
         }
     }
 }
