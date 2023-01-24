@@ -10,6 +10,14 @@ class Zone(Landmark):
     construction_cost = 0
     max_residental_population = 0
     max_commercial_population = 0
+
+
+class Building(Landmark):
+    ownable = True
+
+    construction_cost = 0
+    max_residental_population = 0
+    max_commercial_population = 0
     
 # creates the Foundation scenario
 from ai_economist.foundation.base.base_env import BaseEnvironment, scenario_registry
@@ -26,10 +34,23 @@ class UrbanDesignSimulation(BaseEnvironment):
         **base_env_kwargs,
     ):
 
-        zone_dict = base_env_kwargs['zones']
+        locations_dict = base_env_kwargs['locations']
 
-        for zone in zone_dict.keys():
-            landmark_registry.add(type(zone, (Zone,), {'name': zone}))
+        for zone in locations_dict.keys():
+            zone_name = zone + '_zone'
+            zone_atri = {**{'name': zone_name}, **locations_dict[zone]}
+
+            landmark_registry.add(type(zone_name, (Zone,), {'name': zone_name}))
+            self.required_entities.append(zone_name)
+
+        for building in locations_dict.keys():
+            building_name = building + '_building'
+            building_atri = {**{'name': building_name}, **locations_dict[building]}
+
+            landmark_registry.add(type(building_name, (Building,), {'name': building_name}))
+            self.required_entities.append(building_name)
+
+        print(self.required_entities)
 
 
     def reset_layout(self):
@@ -97,7 +118,7 @@ env_config = {
     'starting_agent_coin': 10,
 
     # dict that stores information on the different types of zone
-    'zones': {
+    'locations': {
 
         "low_density_residential":{
             "construction_cost":10,
