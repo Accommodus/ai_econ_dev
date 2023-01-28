@@ -11,7 +11,7 @@ from ai_economist.foundation.base.base_component import (
 class Build_Property():
     name = "Build"
     component_type = "Build"
-    required_entities = ["Coin"}
+    required_entities = ["Coin"]
     agent_subclasses = ["BasicMobileAgent"]
 
     def __init__(
