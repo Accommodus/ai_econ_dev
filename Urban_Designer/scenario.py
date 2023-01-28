@@ -1,21 +1,8 @@
+from ai_economist.foundation.entities.landmarks import landmark_registry
 
-#creates base zone classes to be used latter in the scenario
-from ai_economist.foundation.entities.landmarks import Landmark, landmark_registry
-
-class Zone(Landmark):
-    ownable = True
-
-class Building(Landmark):
-    ownable = True
-
-    construction_cost = 0
-    max_residental_population = 0
-    max_commercial_population = 0
-    
 # creates the Foundation scenario
 from ai_economist.foundation.base.base_env import BaseEnvironment, scenario_registry
 import components
-
 @scenario_registry.add
 class UrbanDesignSimulation(BaseEnvironment):
     name = "UrbanDesignSimulation"

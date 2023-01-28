@@ -1,11 +1,9 @@
-from ai_economist.foundation.base.base_component import (
-    BaseComponent,
-    component_registry,
-)
+from ai_economist.foundation.base.base_component import BaseComponent, component_registry
+import landmarks
 
 @component_registry.add
 class Build_Property():
-    name = "Build"
+    name = "Build_Property"
     component_type = "Build"
     required_entities = ["Coin"]
     agent_subclasses = ["BasicMobileAgent"]
@@ -14,7 +12,7 @@ class Build_Property():
             self,
             *base_component_args,
             skill_dist="none",
-            building=Building,
+            building=landmarks.BaseBuilding,
             **base_component_kwargs
     ):
         super().__init__(*base_component_args, **base_component_kwargs)
