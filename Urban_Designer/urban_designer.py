@@ -17,16 +17,11 @@ class Build_Property():
     def __init__(
             self,
             *base_component_args,
-            payment=10,
-            payment_max_skill_multiplier=1,
             skill_dist="none",
-            build_labor=10.0,
+            building=Building,
             **base_component_kwargs
     ):
         super().__init__(*base_component_args, **base_component_kwargs)
-
-        self.payment = int(payment)
-        assert self.payment >= 0
 
         self.payment_max_skill_multiplier = int(payment_max_skill_multiplier)
         assert self.payment_max_skill_multiplier >= 1
