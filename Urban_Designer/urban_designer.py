@@ -65,7 +65,8 @@ env_config = {
     }
 }
 
-env = foundation.make_env_instance(**env_config)
+if __name__ == "__urban_designer__":
+    env = foundation.make_env_instance(**env_config)
 
 """ 
 agents:
