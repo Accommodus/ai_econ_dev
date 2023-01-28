@@ -2,7 +2,7 @@ from ai_economist.foundation.base.base_component import BaseComponent, component
 import landmarks
 
 @component_registry.add
-class Build_Property():
+class Build_Property(BaseComponent):
     name = "Build_Property"
     component_type = "Build"
     required_entities = ["Coin"]
