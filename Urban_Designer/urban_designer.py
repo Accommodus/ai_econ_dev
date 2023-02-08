@@ -65,8 +65,10 @@ env_config = {
     }
 }
 
-if __name__ == "__urban_designer__":
+if __name__ == "__main__":
     env = foundation.make_env_instance(**env_config)
+    obs = env.reset()
+    print("test")
 
 """ 
 agents:

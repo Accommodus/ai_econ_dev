@@ -1,4 +1,5 @@
 from ai_economist.foundation.entities.landmarks import landmark_registry
+import landmarks
 
 # creates the Foundation scenario
 from ai_economist.foundation.base.base_env import BaseEnvironment, scenario_registry
@@ -25,14 +26,14 @@ class UrbanDesignSimulation(BaseEnvironment):
             zone_name = zone + '_zone'
             zone_atri = {**{'name': zone_name}, **locations_dict[zone]}
 
-            landmark_registry.add(type(zone_name, (Zone,), {'name': zone_name}))
+            landmark_registry.add(type(zone_name, (landmarks.BaseZone,), {'name': zone_name}))
             self.required_entities.append(zone_name)
 
         for building in locations_dict.keys():
             building_name = building + '_building'
             building_atri = {**{'name': building_name}, **locations_dict[building]}
 
-            landmark_registry.add(type(building_name, (Building,), {'name': building_name}))
+            landmark_registry.add(type(building_name, (landmarks.BaseBuilding,), {'name': building_name}))
             self.required_entities.append(building_name)
 
         print(self.required_entities)
